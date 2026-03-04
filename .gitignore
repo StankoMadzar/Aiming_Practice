@@ -31,5 +31,15 @@
 *.out
 *.app
 
+# VS
+.vs/
+x64/
+Debug/
+Release/
+*.user
+*.aps
+*.VC.db
+
+# SFML
 External/lib/*
 External/include/*
