@@ -1,34 +1,19 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Network.hpp>
-
+#include "Game.h"
 
 int main()
 {
-    //Window
-    sf::RenderWindow window(sf::VideoMode({ 640, 480 }), "Aiming Practice", sf::Style::Titlebar | sf::Style::Close);
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
+    // Init Game
+    Game game;
 
     //Game Loop
-    while (window.isOpen())
+    while (game.running())
     {
-        //Event polling
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-                window.close();
-        }
-
         //Update
+        game.update();
 
         //Render
-        window.clear();     // clear old frame
-        window.draw(shape); // draw shape
-        window.display();   // tell game that the window is done drawing
+        game.render();
     }
     
     return 0;
