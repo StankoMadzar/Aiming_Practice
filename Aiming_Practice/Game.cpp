@@ -4,6 +4,10 @@
 void Game::initVariables()
 {
 	this->window = nullptr;
+    points = 0;
+    enemySpawnTimerMax = 5.f;
+    enemySpawnTimer = enemySpawnTimerMax;
+    maxEnemies = 5;
 }
 
 void Game::initWindow()
@@ -39,7 +43,16 @@ Game::~Game()
 // Accessors
 const bool Game::running() const
 {
-	return this->window->isOpen();
+	return window->isOpen();
+}
+
+void Game::spawnEnemy()
+{
+    enemy.setPosition(
+        static_cast<float>(rand() % static_cast<int>(window->getSize().x - enemy.getSize().x)), 0.f);
+
+    enemy.setFillColor(sf::Color::Yellow);
+    enemies.push_back(enemy);
 }
 
 void Game::pollEvents()
@@ -61,23 +74,53 @@ void Game::pollEvents()
     }
 }
 
+void Game::updateMousePositions()
+{
+    mousePosWindow = sf::Mouse::getPosition(*this->window);
+}
+
+void Game::updateEnemies()
+{
+    if (enemies.size() < maxEnemies)
+    {
+        if (enemySpawnTimer >= enemySpawnTimerMax)
+        {
+            // spawn enemy and reset timer
+            spawnEnemy();
+            enemySpawnTimer = 0.f;
+        }
+        else
+            enemySpawnTimer += 1.f;
+    }
+    
+    for (auto &e : enemies)
+    {
+        e.move(0.f, 2.f);
+    }
+
+    // Remove enemies at edge of screen
+}
+
 // Functions
 void Game::update()
 {
-    this->pollEvents();
+    pollEvents();
+    updateMousePositions();
+    updateEnemies();
+}
 
-    // Update mouse position relative to screen / window
-    std::cout << "Mouse pos: " 
-        << sf::Mouse::getPosition(*this->window).x 
-        << " " << sf::Mouse::getPosition(*this->window).y 
-        << std::endl;
+void Game::renderEnemies()
+{
+    for (auto& e : enemies)
+    {
+        window->draw(e);
+    }
 }
 
 void Game::render()
 {
-    this->window->clear();      // clear previous frame
+    window->clear();      // clear previous frame
 
-    this->window->draw(enemy);
-
-    this->window->display();    // tell game that you are done drawing to the frame
+    renderEnemies();
+    window->display();    // tell game that you are done drawing to the frame
 }
