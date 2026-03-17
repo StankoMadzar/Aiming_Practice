@@ -6,13 +6,13 @@ int main()
     // Init Game
     Game game;
 
-    //Game Loop
+    // Game Loop
     while (game.running())
     {
-        //Update
+        // Update
         game.update();
 
-        //Render
+        // Render
         game.render();
     }
     
