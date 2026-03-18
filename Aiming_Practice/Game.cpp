@@ -5,9 +5,9 @@ void Game::initVariables()
 {
 	this->window = nullptr;
     points = 0;
-    enemySpawnTimerMax = 5.f;
+    enemySpawnTimerMax = 10.f;
     enemySpawnTimer = enemySpawnTimerMax;
-    maxEnemies = 5;
+    maxEnemies = 10;
 }
 
 void Game::initWindow()
@@ -23,8 +23,8 @@ void Game::initEnemies()
     enemy.setPosition(10, 10);
     enemy.setSize(sf::Vector2f(100.f, 100.f));
     enemy.setFillColor(sf::Color::Cyan);
-    enemy.setOutlineColor(sf::Color::Green);
-    enemy.setOutlineThickness(5.f);
+    //enemy.setOutlineColor(sf::Color::Green);
+    //enemy.setOutlineThickness(5.f);
 }
 
 // Constructrs and Destructors
@@ -77,6 +77,7 @@ void Game::pollEvents()
 void Game::updateMousePositions()
 {
     mousePosWindow = sf::Mouse::getPosition(*this->window);
+    mousePosView = window->mapPixelToCoords(mousePosWindow);
 }
 
 void Game::updateEnemies()
@@ -93,12 +94,33 @@ void Game::updateEnemies()
             enemySpawnTimer += 1.f;
     }
     
-    for (auto &e : enemies)
+    // Move and update enemies
+    for (size_t i = 0; i < enemies.size(); i++)
     {
-        e.move(0.f, 2.f);
-    }
+        bool deleted = false;
 
-    // Remove enemies at edge of screen
+        enemies[i].move(0.f, 4.f);
+
+        // Check if clicked upon
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        {
+            if (enemies[i].getGlobalBounds().contains(mousePosView))
+            {
+                deleted = true;
+
+                //Gain points
+                points += 10.f;
+            }
+        }
+
+        if (enemies[i].getPosition().y > window->getSize().y)
+        {
+            deleted = true;
+        }
+
+        if (deleted)
+            enemies.erase(enemies.begin() + i);
+    }
 }
 
 // Functions
