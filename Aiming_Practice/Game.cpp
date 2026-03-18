@@ -4,10 +4,13 @@
 void Game::initVariables()
 {
 	this->window = nullptr;
+    endGame = false;
     points = 0;
+    health = 10;
     enemySpawnTimerMax = 10.f;
     enemySpawnTimer = enemySpawnTimerMax;
     maxEnemies = 10;
+    mouseHeld = false;
 }
 
 void Game::initWindow()
@@ -44,6 +47,11 @@ Game::~Game()
 const bool Game::running() const
 {
 	return window->isOpen();
+}
+
+const bool Game::getEndGame() const
+{
+    return endGame;
 }
 
 void Game::spawnEnemy()
@@ -101,34 +109,52 @@ void Game::updateEnemies()
 
         enemies[i].move(0.f, 4.f);
 
-        // Check if clicked upon
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-        {
-            if (enemies[i].getGlobalBounds().contains(mousePosView))
-            {
-                deleted = true;
-
-                //Gain points
-                points += 10.f;
-            }
-        }
-
         if (enemies[i].getPosition().y > window->getSize().y)
         {
-            deleted = true;
-        }
-
-        if (deleted)
             enemies.erase(enemies.begin() + i);
+            health--;
+        }
+            
+    }
+
+    // Check if clicked upon
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        if(mouseHeld == false)
+        {
+            mouseHeld = true;
+            bool deleted = false;
+            for (size_t i = 0; i < enemies.size() && deleted == false; i++)
+            {
+                if (enemies[i].getGlobalBounds().contains(mousePosView))
+                {
+                    deleted = true;
+                    enemies.erase(enemies.begin() + i);
+
+                    //Gain points
+                    points += 10.f;
+                }
+            }
+        }
+    }
+    else
+    {
+        mouseHeld = false;
     }
 }
 
 // Functions
 void Game::update()
 {
-    pollEvents();
-    updateMousePositions();
-    updateEnemies();
+    if (!endGame)
+    {
+        pollEvents();
+        updateMousePositions();
+        updateEnemies();
+    }
+
+    if (health <= 0)
+        endGame = true;
 }
 
 void Game::renderEnemies()
