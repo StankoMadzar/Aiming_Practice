@@ -1,11 +1,12 @@
 #include <iostream>
+#include <filesystem>
 #include "Game.h"
 
 int main()
 {
     // Init srand;
     std::srand(static_cast<unsigned>(time(NULL)));
-
+    std::cout << "Current path is: " << std::filesystem::current_path() << std::endl;
 
     // Init Game
     Game game;

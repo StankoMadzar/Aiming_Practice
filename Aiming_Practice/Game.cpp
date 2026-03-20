@@ -21,6 +21,23 @@ void Game::initWindow()
     this->window->setFramerateLimit(60);
 }
 
+int Game::initFonts()
+{
+    if(!font.loadFromFile("Fonts/ARIAL.TTF"));
+    {
+        std::cerr << "Failed to load font!" << std::endl;
+        return -1;
+    }
+}
+
+void Game::initText()
+{
+    uiText.setFont(font);
+    uiText.setCharacterSize(24);
+    uiText.setFillColor(sf::Color::White);
+    uiText.setString("TEST");
+}
+
 void Game::initEnemies()
 {
     enemy.setPosition(10, 10);
@@ -33,8 +50,10 @@ void Game::initEnemies()
 // Constructrs and Destructors
 Game::Game()
 {
-	this->initVariables();
-	this->initWindow();
+	initVariables();
+	initWindow();
+    initFonts();
+    initText();
     initEnemies();
 }
 
@@ -86,6 +105,13 @@ void Game::updateMousePositions()
 {
     mousePosWindow = sf::Mouse::getPosition(*this->window);
     mousePosView = window->mapPixelToCoords(mousePosWindow);
+}
+
+void Game::updateText()
+{
+    std::stringstream ss;
+    ss << "Points: " << points << '\n' << "Health: " << health;
+    uiText.setString(ss.str());
 }
 
 void Game::updateEnemies()
@@ -150,6 +176,7 @@ void Game::update()
     {
         pollEvents();
         updateMousePositions();
+        updateText();
         updateEnemies();
     }
 
@@ -157,11 +184,16 @@ void Game::update()
         endGame = true;
 }
 
-void Game::renderEnemies()
+void Game::renderText(sf::RenderTarget& target)
+{
+    target.draw(uiText);
+}
+
+void Game::renderEnemies(sf::RenderTarget& target)
 {
     for (auto& e : enemies)
     {
-        window->draw(e);
+        target.draw(e);
     }
 }
 
@@ -169,6 +201,7 @@ void Game::render()
 {
     window->clear();      // clear previous frame
 
-    renderEnemies();
+    renderEnemies(*window);
+    renderText(*window);
     window->display();    // tell game that you are done drawing to the frame
 }
