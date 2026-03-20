@@ -6,10 +6,10 @@ void Game::initVariables()
 	this->window = nullptr;
     endGame = false;
     points = 0;
-    health = 10;
+    health = 20;
     enemySpawnTimerMax = 10.f;
     enemySpawnTimer = enemySpawnTimerMax;
-    maxEnemies = 10;
+    maxEnemies = 7;
     mouseHeld = false;
 }
 
@@ -78,7 +78,35 @@ void Game::spawnEnemy()
     enemy.setPosition(
         static_cast<float>(rand() % static_cast<int>(window->getSize().x - enemy.getSize().x)), 0.f);
 
-    enemy.setFillColor(sf::Color::Yellow);
+    int type = rand() % 5;
+    switch (type)
+    {
+    case 0:
+        enemy.setFillColor(sf::Color::Magenta);
+        enemy.setSize(sf::Vector2f(25.f, 25.f));
+        break;
+    case 1:
+        enemy.setFillColor(sf::Color::White);
+        enemy.setSize(sf::Vector2f(36.f, 36.f));
+        break;
+    case 2:
+        enemy.setFillColor(sf::Color::Red);
+        enemy.setSize(sf::Vector2f(45.f, 45.f));
+        break;
+    case 3:
+        enemy.setFillColor(sf::Color::Yellow);
+        enemy.setSize(sf::Vector2f(60.f, 60.f));
+        break;
+    case 4:
+        enemy.setFillColor(sf::Color::Green);
+        enemy.setSize(sf::Vector2f(100.f, 100.f));
+        break;
+    default:
+        enemy.setFillColor(sf::Color::Yellow);
+        enemy.setSize(sf::Vector2f(60.f, 60.f));
+        break;
+    }
+
     enemies.push_back(enemy);
 }
 
@@ -133,7 +161,7 @@ void Game::updateEnemies()
     {
         bool deleted = false;
 
-        enemies[i].move(0.f, 4.f);
+        enemies[i].move(0.f, 3.f);
 
         if (enemies[i].getPosition().y > window->getSize().y)
         {
@@ -154,11 +182,22 @@ void Game::updateEnemies()
             {
                 if (enemies[i].getGlobalBounds().contains(mousePosView))
                 {
+                    //Gain points
+                    if (enemies[i].getFillColor() == sf::Color::Magenta)
+                        points += 12.f;
+                    else if (enemies[i].getFillColor() == sf::Color::White)
+                        points += 8.f;
+                    else if (enemies[i].getFillColor() == sf::Color::Red)
+                        points += 6.f;
+                    else if (enemies[i].getFillColor() == sf::Color::Yellow)
+                        points += 3.f;
+                    else if (enemies[i].getFillColor() == sf::Color::Green)
+                        points += 1.f;
+                    else
+                        points += 1.f;
+
                     deleted = true;
                     enemies.erase(enemies.begin() + i);
-
-                    //Gain points
-                    points += 10.f;
                 }
             }
         }
@@ -179,6 +218,8 @@ void Game::update()
         updateText();
         updateEnemies();
     }
+    else
+        displayEndGameScreen();
 
     if (health <= 0)
         endGame = true;
