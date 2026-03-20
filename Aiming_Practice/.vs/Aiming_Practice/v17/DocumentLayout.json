@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|solutionrelative:Aiming_Practice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|solutionrelative:Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|solutionrelative:Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|solutionrelative:Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{3E1CED6B-BEA1-4DA3-9563-0D0524649EE3}|Aiming_Practice.vcxproj|solutionrelative:Aiming_Practice.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,21 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Game.cpp",
-              "DocumentMoniker": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.cpp",
-              "RelativeDocumentMoniker": "Game.cpp",
-              "ToolTip": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.cpp",
-              "RelativeToolTip": "Game.cpp",
-              "ViewState": "AgIAABkAAAAAAAAAAAAnwDQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2026-03-16T21:56:03.597Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -45,20 +32,34 @@
               "RelativeDocumentMoniker": "Game.h",
               "ToolTip": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.h",
               "RelativeToolTip": "Game.h",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC4AAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAC0AAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-03-16T21:54:59.078Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.cpp",
+              "RelativeDocumentMoniker": "Game.cpp",
+              "ToolTip": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Game.cpp",
+              "RelativeToolTip": "Game.cpp",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAAAHAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2026-03-16T21:56:03.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Aiming_Practice.cpp",
               "DocumentMoniker": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice.cpp",
               "RelativeDocumentMoniker": "Aiming_Practice.cpp",
               "ToolTip": "G:\\GameDev\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice\\Aiming_Practice.cpp",
               "RelativeToolTip": "Aiming_Practice.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-03-04T21:24:57.838Z",
               "EditorCaption": ""
